@@ -1,0 +1,95 @@
+Given a set of N number of objects, write code to generate
+1. all subsets
+2. all permutations of length L when repetition is allowed
+--------------------------------------------------------------------------------
+1. All Subsets
+
+Array = List of N objects indexed 0 to N - 1
+A subset is a collection of objects from the array, say
+    (Array[0], Array[2], Array[3])
+Each subset can be thought of as a binary number, in which 
+the digit at position 'i' - 0 or 1 indicate absence/presence.
+Hence, the subset (Array[0], Array[2], Array[3]) is the binary
+number 000....(N - 4 times)1101 which is 13.
+
+Thus, the subsets are just binary representations of the numbers
+ranging from 0 to 2^N - 1.
+
+Code:
+    ==================================================
+    get Array from user/file
+    N = length of Array
+    for i = 0 to 2^N - 1:
+        num = binary(i) # get the binary form of i 
+        
+        print 'Subset # ', i + 1
+        
+        # Each binary number has to be N digits long
+        # representing N objects
+        for j = 0 to N - 1:
+            if num[j] == 1:
+                print Array[j]
+                print ', '
+        
+        print '\n'
+    ----------------------------------------------------
+    def binary(number):
+        ans = array of size N
+        
+        res = number
+        index = 0
+        while res > 0:
+            ans[index] = res % 2 (res mod 2)
+            res = res / 2
+            index = index + 1
+        return ans
+    ========================================================    
+            
+--------------------------------------------------------------------------------
+2. All permutations of length L when repetition is allowed
+
+Array = List of N objects indexed 0 to N - 1
+
+To create a permutation of length L, we imagine L boxes - 0 to L - 1
+Now, put Array[0] in every box. The number hence created is 0. 
+Now, we put Array[1] in the box indexed 0, but keep Array[0] in all other boxes.
+The number hence created is 1.
+
+We can hence create numbers from 0 to N^L - 1.
+Each permutation is the representation of the numbers in base N.
+The digits tell us which object is there is which box.
+Compare with Problem 1 where the subsets were representation of numbers 
+in base 2.
+
+Code:
+    ==========================================================
+    get Array and L from user/file
+    N = length of Array
+    for i = 0 to N^L - 1:
+        # get the base N representation of i
+        # L digits long
+        num = base_N(i, L, N) 
+        
+        print 'Permutation # ', i + 1
+        
+        for j = 0 to L - 1:
+            print Array[num[j]]
+            print ', '
+        
+        print '\n'
+    ----------------------------------------------------
+    def base_N(number, L, N):
+        ans = array of size L
+        
+        res = number
+        index = 0
+        while res > 0:
+            ans[index] = res % N (res mod N)
+            res = res / N
+            index = index + 1
+        return ans
+    ========================================================  
+
+--------------------------------------------------------------------------------
+       
+        

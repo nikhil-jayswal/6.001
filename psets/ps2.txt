@@ -1,0 +1,79 @@
+McDonald sells Chicken McNuggets in packages of 6, 9 and 20.
+To determine if it is possible to buy exactly 'n' McNuggets,
+one has to solve a Diophantine equation: find non-negative
+integer values of a, b and c, such that
+    6a + 9b + 20c = n
+    
+-----------------------------------------------------------
+
+Problem 1: Show that it is possible to buy exactly 50, 51, 52,
+53, 54 and 55 McNuggets, by finding solutions to the Diophantine 
+equation. 
+Given that it is possible to buy sets of 50, 51, ..., 55 McNuggets
+by combinations of 6, 9 and 20 packs, show that it is possible to
+buy 56, 57, ..., 65 McNuggets. In other words, show how, given
+solutions for 50 - 55, one can derive solutions for 56 - 65.
+ 
+Solution: Output of a program that uses exhaustive enumeration
+to solve the problem, multiple solutions reported in tuples of 
+(a, b, c)
+
+Enter the amount of McNuggets: 50
+((2, 2, 1), (5, 0, 1))
+
+Enter the amount of McNuggets: 51
+((1, 5, 0), (4, 3, 0), (7, 1, 0))
+ 
+Enter the amount of McNuggets: 52
+((2, 0, 2),)
+ 
+Enter the amount of McNuggets: 53
+((1, 3, 1), (4, 1, 1))
+ 
+Enter the amount of McNuggets: 54
+((0, 6, 0), (3, 4, 0), (6, 2, 0), (9, 0, 0))
+ 
+Enter the amount of McNuggets: 55
+((1, 1, 2),)
+
+Once we have solutions for 50 - 55 McNuggets, say (a, b, c), we 
+can derive solutions for 56 - 65 as follows:
+56 - (a + 1, b, c) where (a, b, c) are solutions to 50
+57 - (a + 1, b, c) where (a, b, c) are solutions to 51
+58 - (a + 1, b, c) where (a, b, c) are solutions to 52
+59 - (a + 1, b, c) where (a, b, c) are solutions to 53
+     (a, b + 1, c) where (a, b, c) are solutions to 50
+60 - (a + 1, b, c) where (a, b, c) are solutions to 54
+     (a, b + 1, c) where (a, b, c) are solutions to 51
+61 - (a + 1, b, c) where (a, b, c) are solutions to 55
+     (a, b + 1, c) where (a, b, c) are solutions to 52
+62 - (a + 1, b, c) where (a, b, c) are solutions to 56
+     (a, b + 1, c) where (a, b, c) are solutions to 53
+63 - (a + 1, b, c) where (a, b, c) are solutions to 57
+     (a, b + 1, c) where (a, b, c) are solutions to 54
+64 - (a + 1, b, c) where (a, b, c) are solutions to 58
+     (a, b + 1, c) where (a, b, c) are solutions to 55
+65 - (a + 1, b, c) where (a, b, c) are solutions to 59
+     (a, b + 1, c) where (a, b, c) are solutions to 56
+
+-----------------------------------------------------------
+
+Problem 2: Consider the follwoing theorem:
+
+Theorem: If it is possible to buy x, x+1, ..., x+5 sets of McNuggets,
+for some x, then it is possible to buy any number of McNuggets >= x,
+given that McNuggets come in 6, 9 and 20 packs.
+
+Explain, in English, why this theorem is true.
+
+Solution:  Given that McNuggets come in 6, 9 and 20 packs and if it 
+is possible to buy x, x+1, ..., x+5 sets of McNuggets, for some x,
+then it is possible to buy x+6, x+7, ..., x+11 McNuggets by adding 
+a pack of 6 McNuggets. Similarly, by adding a pack of 9, it is 
+possible to buy x+9, x+10, ..., x+14 McNuggets and further adding 
+a pack of 6, it is possible to buy x+15, x+16, ..., x+20 McNuggets
+Similarly, by adding a pack of 20, it is possible to buy x+20, x+21, 
+..., x+25 McNuggets. We could further add packs of 6, 9 and 20 and get
+solutions for any x.
+
+
